@@ -9,7 +9,6 @@ module.exports = function(api) {
             "@pages": "./src/pages",
             "@assets": "./src/assets",
             "@components": "./src/components",
-            "@routes": "./src/routes",
             "@storage": "./src/storage",
             "@utils": "./src/ultils",
             "@theme": "./src/theme",

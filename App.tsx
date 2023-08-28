@@ -1,11 +1,12 @@
-import { Home } from '@pages/Home';
-import theme from '@theme/index';
-import { ThemeProvider } from 'styled-components/native';
 import { useFonts, Roboto_400Regular, Roboto_700Bold } from '@expo-google-fonts/roboto';
-import { Loading } from '@components/Loading/Index';
+import theme from '@theme/index';
 import { StatusBar } from 'react-native';
+
+import { ThemeProvider } from 'styled-components/native';
+import { Home } from '@pages/Home';
+import { Loading } from '@components/Loading/Index';
 import { NewGroup } from '@pages/NewGroup';
-import { Players } from '@pages/Players';
+import { Routes } from './src/Routes';
 
 export default function App() {
   const [fontsLoaded] = useFonts({ Roboto_400Regular, Roboto_700Bold });
@@ -14,7 +15,7 @@ export default function App() {
     <ThemeProvider theme={theme}>
       <StatusBar barStyle="light-content" backgroundColor="transparent" translucent />
 
-      {fontsLoaded ? <Players /> : <Loading />}
+      {fontsLoaded ? <Routes /> : <Loading />}
     </ThemeProvider>
   );
 }

@@ -3,13 +3,14 @@ import LogoImg from '@assets/logo.png';
 
 interface Props {
   showBackButton?: boolean;
+  onPress?: () => void;
 }
 
-export function Navbar({ showBackButton }: Props) {
+export function Navbar({ showBackButton, onPress }: Props) {
   return (
     <Container>
       {showBackButton && (
-        <BackButton>
+        <BackButton onPress={onPress}>
           <IconBack />
         </BackButton>
       )}
