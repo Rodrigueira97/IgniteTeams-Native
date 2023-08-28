@@ -11,26 +11,21 @@ import { Filter } from '@components/Filter';
 import { PlayersCard } from '@components/PlayerCard';
 import { ListEmpty } from '@components/ListEmpty';
 import { Button } from '@components/Button';
+import { useNavigation, useRoute } from '@react-navigation/native';
 
 export function Players() {
   const [team, setTeam] = useState('Time A');
+  const [players, setPlayers] = useState([]);
   const teams = ['Time A', 'Time B'];
-  const [players, setPlayers] = useState([
-    'Rodrigo',
-    'Leonardo',
-    'Diego',
-    'Lucas',
-    'Marcos',
-    'Douglas',
-    'Ricardo',
-    'Joao',
-  ]);
+
+  const { params } = useRoute();
+  const { navigate } = useNavigation();
 
   return (
     <Container>
-      <Navbar showBackButton />
+      <Navbar showBackButton onPress={() => navigate('home')} />
 
-      <Highlight title="Nome da turma " subtitle="adicione a galera e separe os times" />
+      <Highlight title={params.group} subtitle="adicione a galera e separe os times" />
 
       <Form>
         <Input placeholder="Nome da pessoa" autoCorrect={false} />
@@ -41,8 +36,8 @@ export function Players() {
       <HeaderList>
         <FlatList
           data={teams}
-          keyExtractor={(item) => item}
           horizontal
+          keyExtractor={(item) => item}
           renderItem={({ item }) => (
             <Filter title={item} isActive={item === team} onPress={() => setTeam(item)} />
           )}

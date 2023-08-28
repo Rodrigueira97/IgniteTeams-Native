@@ -1,12 +1,14 @@
+import { useState } from 'react';
+import { FlatList } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
+
 import { Container } from './styles';
+
 import { Navbar } from '@components/Navbar';
 import { Highlight } from '@components/Highlight';
 import { Card } from '@components/Card';
-import { useState } from 'react';
-import { FlatList } from 'react-native';
 import { ListEmpty } from '@components/ListEmpty';
 import { Button } from '@components/Button';
-import { useNavigation } from '@react-navigation/native';
 
 export function Home() {
   const [groups, setGroups] = useState<string[]>([]);
