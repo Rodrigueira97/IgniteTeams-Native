@@ -6,13 +6,20 @@ import { Highlight } from '@components/Highlight';
 import { Button } from '@components/Button';
 import { Input } from '@components/Input';
 import { useState } from 'react';
+import { groupCreate } from '@storage/group/groupCreate';
 
 export function NewGroup() {
   const { goBack, navigate } = useNavigation();
   const [group, setGroup] = useState<string>();
 
-  function handleGroup() {
-    navigate('players', { group: group });
+  async function handleGroup() {
+    try {
+      await groupCreate(group);
+
+      navigate('players', { group: group });
+    } catch (error) {
+      console.log(error);
+    }
   }
 
   return (
