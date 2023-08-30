@@ -26,7 +26,6 @@ export function Home() {
 
   useFocusEffect(
     useCallback(() => {
-      console.log('me chamou');
       fetchGroups();
     }, []),
   );
