@@ -1,5 +1,5 @@
-import { useEffect, useState } from 'react';
-import { Alert, FlatList } from 'react-native';
+import { useEffect, useState, useRef } from 'react';
+import { Alert, FlatList, Keyboard, TextInput } from 'react-native';
 
 import { Container, Form, HeaderList, NumberOfPlayers } from './styles';
 
@@ -32,6 +32,8 @@ export function Players() {
   const { group } = params as RouteParams;
   const { navigate } = useNavigation();
 
+  const newPlayerNameInputRef = useRef<TextInput>(null);
+
   async function handleAddPlayer() {
     if (newPlayerName.trim().length < 1) {
       return Alert.alert('Campo vazio', 'Informe um nome válido');
@@ -44,6 +46,9 @@ export function Players() {
 
     try {
       await PlayerAddByGroup(newPlayer, group);
+
+      Keyboard.dismiss();
+      setNewPlayerName('');
       fetchPlayersByTeam();
     } catch (error) {
       if (error instanceof AppError) {
@@ -76,7 +81,14 @@ export function Players() {
       <Highlight title={group} subtitle="adicione a galera e separe os times" />
 
       <Form>
-        <Input placeholder="Nome da pessoa" autoCorrect={false} onChangeText={setNewPlayerName} />
+        <Input
+          placeholder="Nome da pessoa"
+          autoCorrect={false}
+          ref={newPlayerNameInputRef}
+          value={newPlayerName}
+          onChangeText={setNewPlayerName}
+          onSubmitEditing={handleAddPlayer}
+        />
 
         <ButtonIcon name="add" onPress={handleAddPlayer} />
       </Form>
