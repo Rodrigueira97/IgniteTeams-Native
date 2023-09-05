@@ -23,6 +23,7 @@ export const Name = styled.Text`
     color: ${theme.COLORS.GRAY_200};
     font-family: ${theme.FONT_FAMILY.REGULAR};
   `}
+  text-transform: capitalize;
 `;
 
 export const Icon = styled(MaterialIcons).attrs(({ theme }) => ({
